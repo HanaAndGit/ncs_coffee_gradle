@@ -1,0 +1,44 @@
+{
+	"folders": {},
+	"connections": {
+		"mysql5-1709f7443c7-61b768631643ce96": {
+			"provider": "mysql",
+			"driver": "mysql5",
+			"name": "MySQL - localhost (root)",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "3306",
+				"url": "jdbc:mysql://localhost:3306/",
+				"type": "dev",
+				"handlers": {}
+			}
+		},
+		"mysql5-1709f92d4b1-159b64f03698df72": {
+			"provider": "mysql",
+			"driver": "mysql5",
+			"name": "MySQL - ncs_coffee_gradle",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "3306",
+				"database": "ncs_coffee_gradle",
+				"url": "jdbc:mysql://localhost:3306/ncs_coffee_gradle",
+				"type": "dev",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false
+		}
+	}
+}

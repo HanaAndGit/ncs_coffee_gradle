@@ -7,7 +7,7 @@ public class Sale {
 	private int sale_cnt;
 	private int margin_rate;
 	
-	private int rank;
+	private String rank;
 	private String name;
 	private int supply_value;
 	private int surtax_value;
@@ -21,7 +21,7 @@ public class Sale {
 	
 	
 	
-	public Sale(int rank, String product_code, 
+	public Sale(String rank, String product_code, 
 			String product_name ,int price, int sale_cnt, 
 			int supply_value, int surtax_value, int selling_price, 
 			int margin_rate, int margin_value) {
@@ -83,11 +83,11 @@ public class Sale {
 		this.name = name;
 	}
 
-	public int getRank() {
+	public String getRank() {
 		return rank;
 	}
 
-	public void setRank(int rank) {
+	public void setRank(String rank) {
 		this.rank = rank;
 	}
 

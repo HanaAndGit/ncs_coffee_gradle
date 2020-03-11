@@ -23,6 +23,10 @@ public class SaleService {
 		return dao.showSaleCntRank();
 	}
 	
+	public List<String> saleExistChk() throws SQLException{
+		return dao.saleExistChk();
+	}
+	
 }
 
 

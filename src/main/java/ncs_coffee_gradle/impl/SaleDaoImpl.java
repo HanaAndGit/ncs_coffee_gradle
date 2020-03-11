@@ -73,7 +73,7 @@ private static final SaleDaoImpl instance = new SaleDaoImpl();
 	
 	
 	private Sale getSale(ResultSet rs) throws SQLException {
-		int rank = rs.getInt(1);
+		String rank = rs.getString(1);
 		String code = rs.getString(2);
 		String name = rs.getString(3);
 		int price = rs.getInt(4);
@@ -86,6 +86,25 @@ private static final SaleDaoImpl instance = new SaleDaoImpl();
 		
 		return new Sale(rank, code, name, price, sale_cnt, supply_value, surtax_value, selling_cost, margin_rate, margin_price);
 		
+	}
+	@Override
+	public List<String> saleExistChk() throws SQLException {
+		String sql = "select product_code from sale";
+		List<String> list = null;
+		int res = 0;
+		try(Connection con = MySqlDataSource.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();){
+			
+			if(rs.next()) {
+				list = new ArrayList<>();
+				do {
+					list.add(rs.getString(1));
+				}while(rs.next());
+			}
+			
+		}
+		return list;
 	}
 
 }

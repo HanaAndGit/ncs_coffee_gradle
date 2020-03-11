@@ -1,5 +1,9 @@
 select user(), DATABASE ();
 
+DROP SCHEMA IF EXISTS ncs_coffee_gradle;
+
+-- 내 스키마
+CREATE SCHEMA ncs_coffee_gradle;
 
 -- 제품
 CREATE TABLE "product" (

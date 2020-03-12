@@ -99,14 +99,24 @@ public class MainFrame extends JFrame {
 		JButton btnPrint1 = new JButton("출력1");
 		btnPrint1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PrintFrame frame = new PrintFrame();
-				frame.setBounds(100, 100, 450, 500);
+				PrintFrame_SaleRank frame = new PrintFrame_SaleRank();
+				frame.setBounds(100, 100, 900, 500);
 				frame.setVisible(true);
 			}
 		});
 		btnsPanel.add(btnPrint1);
 		
 		JButton btnPrint2 = new JButton("출력2");
+		btnPrint2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrintFrame_MarginRank frame = new PrintFrame_MarginRank();
+				frame.setBounds(100, 100, 900, 500);
+				frame.setVisible(true);	
+			}
+			
+		});
 		btnsPanel.add(btnPrint2);
 		
 		panel = new product_sale_panel();

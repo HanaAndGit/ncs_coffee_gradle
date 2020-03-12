@@ -102,6 +102,23 @@ abstract public class AbsCenterTblPanel<T> extends JPanel {
 		scrollPane.setComponentPopupMenu(popupMenu);
 		table.setComponentPopupMenu(popupMenu);
 	}
+	
+	protected void tableSetWidth(int...width) {
+		TableColumnModel cModel = table.getColumnModel();
+		for(int i=0; i<width.length; i++) {
+			cModel.getColumn(i).setPreferredWidth(width[i]);
+		}
+	}
+	
+	protected void tableCellAlign(int align, int...idx) {
+		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+		dtcr.setHorizontalAlignment(align);
+		
+		TableColumnModel cModel = table.getColumnModel();
+		for(int i=0; i<idx.length; i++) {
+			cModel.getColumn(idx[i]).setCellRenderer(dtcr);
+		}
+	}
 
 	protected class NotEditableModel extends DefaultTableModel {
 

@@ -27,6 +27,10 @@ public class SaleService {
 		return dao.saleExistChk();
 	}
 	
+	public List<Sale> showMarginCntRank() throws SQLException{
+		return dao.showMarginCntRank();
+	}
+	
 }
 
 

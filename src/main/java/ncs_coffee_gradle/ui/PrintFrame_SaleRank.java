@@ -9,13 +9,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import ncs_coffee_gradle.service.SaleService;
-import ncs_coffee_gradle.ui.panel.PrintTbl1;
+import ncs_coffee_gradle.ui.panel.PrintSaleRank;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 
-public class PrintFrame extends JFrame {
+public class PrintFrame_SaleRank extends JFrame {
 	private SaleService service = new SaleService(); 
-	public PrintFrame() {
+	public PrintFrame_SaleRank() {
 		initialize();
 	}
 	private void initialize() {
@@ -24,7 +24,7 @@ public class PrintFrame extends JFrame {
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		PrintTbl1 rankPanel = new PrintTbl1();
+		PrintSaleRank rankPanel = new PrintSaleRank();
 		try {
 			rankPanel.loadTableData(service.showSaleCntRank());
 		} catch (SQLException e) {
@@ -32,9 +32,6 @@ public class PrintFrame extends JFrame {
 			e.printStackTrace();
 		}
 		panel.add(rankPanel);
-		
-		JPanel sumPanel = new JPanel();
-		panel.add(sumPanel);
 	}
 
 
@@ -46,7 +43,7 @@ public class PrintFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PrintFrame frame = new PrintFrame();
+					PrintFrame_SaleRank frame = new PrintFrame_SaleRank();
 					frame.setBounds(100, 100, 550, 300);
 					frame.setVisible(true);
 				} catch (Exception e) {

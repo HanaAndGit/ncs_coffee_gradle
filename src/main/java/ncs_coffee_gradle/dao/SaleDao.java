@@ -11,4 +11,5 @@ public interface SaleDao {
 	abstract List<Sale> showSales() throws SQLException;
 	abstract List<Sale> showSaleCntRank() throws SQLException;
 	abstract List<String> saleExistChk() throws SQLException;
+	abstract List<Sale> showMarginCntRank() throws SQLException;
 }

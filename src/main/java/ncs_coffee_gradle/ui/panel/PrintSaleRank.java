@@ -1,18 +1,20 @@
 package ncs_coffee_gradle.ui.panel;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ncs_coffee_gradle.dto.Sale;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumnModel;
+
 import java.awt.Font;
 
-public class PrintTbl1 extends AbsCenterTblPanel<Sale> {
+public class PrintSaleRank extends AbsCenterTblPanel<Sale> {
 
 	
-	public PrintTbl1() {
+	public PrintSaleRank() {
 		
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
@@ -21,13 +23,16 @@ public class PrintTbl1 extends AbsCenterTblPanel<Sale> {
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblNewLabel);
+		
+		
 
 	}
 
 	@Override
 	protected void setTblWidthAlign() {
-		// TODO Auto-generated method stub
-		
+		tableSetWidth(50,100,100,50,50,100,100,100,50);
+		tableCellAlign(SwingConstants.RIGHT, 3,4,5,6,7,8,9);
+		tableCellAlign(SwingConstants.CENTER, 0,1,2);
 	}
 
 	@Override
@@ -37,16 +42,16 @@ public class PrintTbl1 extends AbsCenterTblPanel<Sale> {
 
 	@Override
 	protected Object[] toArray(Sale item) {
-		return new Object[] {item.getRank(),
-				item.getProduct_code(),
-				item.getName(),
-				item.getPrice(),
-				item.getSale_cnt(),
-				item.getSupply_value(),
-				item.getSurtax_value(),
-				item.getSelling_price(),
-				item.getMargin_rate(),
-				item.getMargin_value()};
+		return new Object[] {item.getRank(), //순위
+				item.getProduct_code(), //제품코드
+				item.getName(), //제품명
+				String.format("%,d", item.getPrice()), //제품단가
+				String.format("%,d", item.getSale_cnt()), //판매수량
+				String.format("%,d", item.getSupply_value()), //공급가액
+				String.format("%,d", item.getSurtax_value()), //부가세액
+				String.format("%,d", item.getSelling_price()), //판매금액
+				String.format("%,d", item.getMargin_rate()), //마진율
+				String.format("%,d", (item.getMargin_value()/100))}; //마진액
 	}
 
 	@Override

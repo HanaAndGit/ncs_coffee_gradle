@@ -106,5 +106,36 @@ private static final SaleDaoImpl instance = new SaleDaoImpl();
 		}
 		return list;
 	}
+	@Override
+	public List<Sale> showMarginCntRank() throws SQLException {
+		List list = new ArrayList();
+ 		String sql = "select (select count(*)+1 from sale  where (select (select (select price*sale_cnt)-(select (select price*sale_cnt)/11))*margin_rate) > (select (select (select s.price*s.sale_cnt)-(select (select s.price*s.sale_cnt)/11))*s.margin_rate) ) as 순위, \n" + 
+				"	s.product_code as 제품코드, \n" + 
+				"	(select p.product_name from product where product_code= s.product_code) as 제품명,\n" + 
+				"	s.price as 제품단가,\n" + 
+				"	s.sale_cnt as 판매수량,\n" + 
+				"	(select (select s.price*s.sale_cnt)-(select (select s.price*s.sale_cnt)/11)) as 공급가액,\n" + 
+				"	(select (select s.price*s.sale_cnt)/11) as 부가세액,\n" + 
+				"	(select s.price*s.sale_cnt) as 판매금액,\n" + 
+				"	s.margin_rate as 마진율,\n" + 
+				"	(select (select (select s.price*s.sale_cnt)-(select (select s.price*s.sale_cnt)/11))*s.margin_rate) as 마진액\n" + 
+				"	from sale s left join product p on s.product_code = p.product_code \n" + 
+				"	order by 마진액 desc";
+		
+		try(Connection con = MySqlDataSource.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();){
+			if(rs.next()) {
+				do {
+					list.add(getSale(rs));
+				}while(rs.next());
+			}
+			
+			
+		}
+		
+		
+		return list;
+	}
 
 }
